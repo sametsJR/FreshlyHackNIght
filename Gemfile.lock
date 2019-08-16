@@ -73,6 +73,7 @@ GEM
       warden (~> 1.2.3)
     erubi (1.8.0)
     execjs (2.7.0)
+    ffaker (2.11.0)
     ffi (1.11.1)
     ffi (1.11.1-java)
     ffi (1.11.1-x64-mingw32)
@@ -224,6 +225,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
   devise
+  ffaker
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   pg (>= 0.18, < 2.0)
@@ -241,4 +243,4 @@ RUBY VERSION
    ruby 2.6.2p47
 
 BUNDLED WITH
-   2.0.1
+   2.0.2
