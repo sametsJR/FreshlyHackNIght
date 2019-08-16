@@ -1,0 +1,18 @@
+h1 = "#{@dish.title} (#{@dishes_rating[@dish.id]})"
+ul
+  - @dish.components.each do |component|
+    li
+      = "#{component.title} (#{@components_rating[component.id]})"
+      ul
+        - component.products.each do |product|
+          li = "#{product.title} (#{@products_rating[product.id]})"
+
+= simple_form_for @vote do |f|
+  = f.input :dish_id, as: :hidden
+  = f.input :status, as: :hidden, input_html: { value: 'like' }
+  = f.button :submit, 'Like'
+
+= simple_form_for @vote do |f|
+  = f.input :dish_id, as: :hidden
+  = f.input :status, as: :hidden, input_html: { value: 'dislike' }
+  = f.button :submit, 'Dislike'
