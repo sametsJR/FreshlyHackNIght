@@ -1,4 +1,5 @@
 # FreshlyHackNIght
-#First ster:
-###### Create structs
-###### 
+
+Maxim Spaseonav, Alexander Poplavskiy, Arterm Shatskiy
+
+# Step Design database
