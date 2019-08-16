@@ -10,10 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_16_173135) do
+ActiveRecord::Schema.define(version: 2019_08_16_183048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "component_dishes", force: :cascade do |t|
+    t.bigint "component_id"
+    t.bigint "dish_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["component_id"], name: "index_component_dishes_on_component_id"
+    t.index ["dish_id"], name: "index_component_dishes_on_dish_id"
+  end
+
+  create_table "component_products", force: :cascade do |t|
+    t.bigint "component_id"
+    t.bigint "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["component_id"], name: "index_component_products_on_component_id"
+    t.index ["product_id"], name: "index_component_products_on_product_id"
+  end
+
+  create_table "components", force: :cascade do |t|
+    t.string "title"
+    t.bigint "dish_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dish_id"], name: "index_components_on_dish_id"
+  end
+
+  create_table "dishes", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -25,6 +63,17 @@ ActiveRecord::Schema.define(version: 2019_08_16_173135) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.string "title"
+    t.bigint "dish_id"
+    t.bigint "user_id"
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dish_id"], name: "index_votes_on_dish_id"
+    t.index ["user_id"], name: "index_votes_on_user_id"
   end
 
 end
