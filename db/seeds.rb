@@ -1,22 +1,19 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
-
 10.times do
   Product.create({ title: FFaker::Food.meat })
 end
 
 10.times do
   component = Component.create({ title: FFaker::Food.ingredient })
-  component.products << Product.all.sample
+  component.product_ids = Product.pluck(:id).shuffle.first(rand(3) + 1)
 end
 
-10.times do
+50.times do
   dish = Dish.create({ title: FFaker::Product.product_name })
-  dish.components << Component.all.sample
+  dish.component_ids = Component.pluck(:id).shuffle.first(rand(3) + 1)
+end
+
+user = User.create(email: 'admin@example.com', password: 'password')
+
+10.times do
+  user.votes.create(dish: Dish.all.sample, status: rand(2))
 end
